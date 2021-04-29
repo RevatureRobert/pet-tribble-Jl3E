@@ -29,7 +29,7 @@ public class ApplicationUtil {
     public Connection getConnection() throws SQLException {
         return DriverManager.getConnection(
                 "jdbc:postgresql://samplepsql.cd1hrpx24rhn.us-west-1.rds.amazonaws.com:5432/postgres?currentSchema=tribble",
-                "Jl3E",
-                "Icefire1");
+                "",
+                "");
     }
 }
