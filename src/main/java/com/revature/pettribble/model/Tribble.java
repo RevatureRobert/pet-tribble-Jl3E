@@ -11,7 +11,7 @@ public class Tribble {
     @Column(name = "tribble_id")
     private int id;
 
-    @Column(name = "tribbleName")
+    @Column(name = "tribble_name")
     private String tribbleName;
 
     @Column(name = "tribble_weight")
