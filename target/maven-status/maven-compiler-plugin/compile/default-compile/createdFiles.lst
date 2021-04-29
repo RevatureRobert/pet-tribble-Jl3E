@@ -1,0 +1,5 @@
+com\revature\pettribble\config\ApplicationUtil.class
+com\revature\pettribble\model\Lab.class
+com\revature\pettribble\db\Crud.class
+com\revature\pettribble\model\Tribble.class
+com\revature\pettribble\Driver.class

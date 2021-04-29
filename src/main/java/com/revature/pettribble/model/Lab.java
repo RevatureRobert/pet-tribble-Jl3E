@@ -7,50 +7,50 @@ public class Lab {
 
     @Id
     @Column(name = "lab_id")
-    private int labId;
+    private int lab_id;
 
     @Column(name = "lab_name")
-    private String labName;
+    private String lab_name;
 
     @Column(name = "tribble_id")
-    private int tribbleId;
+    private int tribble_id;
 
-    public Lab(int labId, String labName, int tribbleId) {
-        this.labId = labId;
-        this.labName = labName;
-        this.tribbleId = tribbleId;
+    public Lab(int lab_id, String lab_name, int tribble_id) {
+        this.lab_id = lab_id;
+        this.lab_name = lab_name;
+        this.tribble_id = tribble_id;
     }
 
-    public int getLabId() {
-        return labId;
+    public int getLab_id() {
+        return lab_id;
     }
 
-    public void setLabId(int labId) {
-        this.labId = labId;
+    public void setLab_id(int lab_id) {
+        this.lab_id = lab_id;
     }
 
-    public String getLabName() {
-        return labName;
+    public String getLab_name() {
+        return lab_name;
     }
 
-    public void setLabName(String labName) {
-        this.labName = labName;
+    public void setLab_name(String lab_name) {
+        this.lab_name = lab_name;
     }
 
-    public int getTribbleId() {
-        return tribbleId;
+    public int getTribble_id() {
+        return tribble_id;
     }
 
-    public void setTribbleId(int tribbleId) {
-        this.tribbleId = tribbleId;
+    public void setTribble_id(int tribble_id) {
+        this.tribble_id = tribble_id;
     }
 
     @Override
     public String toString() {
         return "Lab{" +
-                "labId=" + labId +
-                ", labName='" + labName + '\'' +
-                ", tribbleId=" + tribbleId +
+                "lab_id=" + lab_id +
+                ", lab_name='" + lab_name + '\'' +
+                ", tribble_id=" + tribble_id +
                 '}';
     }
 }
