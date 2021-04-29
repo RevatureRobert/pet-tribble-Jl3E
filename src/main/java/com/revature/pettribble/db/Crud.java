@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.revature.pettribble.annotation.DataTable;
 import com.revature.pettribble.config.ApplicationUtil;
 
 import javax.persistence.Column;
@@ -139,63 +138,61 @@ public class Crud {
         }
         return false;
     }
+
+    public void updateTable(Object o) {//the select by id needs to be used first to get a primary key
+        String tableName = o.getClass().getSimpleName().toLowerCase();
+
+        Gson gson = new Gson();
+        String json = gson.toJson(o);
+        JsonElement element = new JsonParser().parse(json);
+        JsonObject obj = element.getAsJsonObject(); //since you know it's a JsonObject
+        Set<Map.Entry<String, JsonElement>> entries = obj.entrySet();//will return members of your object
+
+        StringBuilder sqlBuilder = new StringBuilder();
+        StringBuilder sqlBuilder2 = new StringBuilder();
+        sqlBuilder.append("update ");
+        sqlBuilder.append(tableName.toLowerCase()+" set ");
+        int size = entries.size();
+        int index = 0;
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            String check = String.valueOf(entry.getValue());
+            if (check.contains("\"")) {
+                String newCheck = check.replace("\"", "\'");
+                if(index == 0){
+                    sqlBuilder2.append("where "+entry.getKey()+"="+newCheck+";");
+                    index++;
+                    continue;
+                }else if(index==1){
+                    sqlBuilder.append(entry.getKey() + "="+newCheck+" ");
+                    index++;
+                    continue;
+                }
+                sqlBuilder.append(", "+entry.getKey() + "="+newCheck+" ");
+                continue;  // this is need to skip over the other ford with quotes being added to the StringBuilder
+            }
+            if(index == 0){
+                sqlBuilder2.append("where "+entry.getKey()+"="+entry.getValue()+";");
+                index++;
+                continue;
+            }else if(index==1){
+                sqlBuilder.append(entry.getKey() + "="+entry.getValue()+" ");
+                index++;
+                continue;
+            }
+            sqlBuilder.append(", "+entry.getKey()+"="+entry.getValue()+" ");
+
+        }
+        String sql = sqlBuilder.toString()+sqlBuilder2.toString();
+        try {
+            Statement st = ApplicationUtil.getInstance().getConnection().createStatement();
+            int i = st.executeUpdate(sql);
+            System.out.println("The number of updated rows were " + i);
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+    }
 }
 
 
-
-////        this get my annotations from the class of Object o passed and the annotations .name() gives the column name and .dataType() gives the sql data type acceptable for user
-//        for (Field f : fields) {
-//                if (f.getAnnotation(Id.class) != null) {
-////                System.out.println(f.getAnnotation(Column.class).name());
-//        String idName = f.getAnnotation(Column.class).name();
-////                System.out.println(o.getClass().getDeclaredField(idName).get(o));
-//        columns.add(f.getAnnotation(Column.class).name());
-////                columns.add(f.getAnnotation(com.project1.annotations.Id.class).dataType());
-//        }
-//        if (f.getAnnotation(Column.class) != null) {
-//        System.out.println(f.getAnnotation(Column.class).name());
-////                columns.add(f.getAnnotation(Column.class).name());
-////                columns.add(f.getAnnotatedType(Column.class));
-//        }
-//        }
-
-
-
-
-
-
-//    Queue<String> columns = new LinkedList<>();//this holds the table names and data types
-//
-//    Class clazz = o.getClass();
-//    Field[] fields = clazz.getDeclaredFields();
-//    String className = o.getClass().getSimpleName(); // this gives the classname to be used as the table name
-//
-////        this get my annotations from the class of Object o passed and the annotations .name() gives the column name and .dataType() gives the sql data type acceptable for user
-//        for (Field f : fields) {
-//                if (f.getAnnotation(Column.class) != null) {
-//        System.out.println(f.getAnnotation(Column.class).name());
-//        System.out.println(clazz.getName());
-//        columns.add(f.getAnnotation(Column.class).name());
-//        }
-//        }
-//
-////        StringBuilder sqlBuilder = new StringBuilder();
-////
-////        sqlBuilder.append("create table ");
-////        sqlBuilder.append(className.toLowerCase() + "(");
-////        int size = columns.size() / 2;
-////
-////        for (int i = 0; i < size; i++) {
-////            if (columns.size() == 2) { // this is hard coded as 2 because the last two elements in the queue will be the column name and data type
-////                sqlBuilder.append(columns.poll() + " " + columns.poll() + ");");
-////                break;
-////            }
-////            sqlBuilder.append(columns.poll() + " " + columns.poll() + ", ");
-////        }
-////        //System.out.println(sqlBuilder); // to test the database with first
-////
-////        String sql = String.valueOf(sqlBuilder);
-//////        System.out.println(sql);//TODO: THIS IS THE RIGHT SQL
-////        return sql;
-//        return null;
-//        }

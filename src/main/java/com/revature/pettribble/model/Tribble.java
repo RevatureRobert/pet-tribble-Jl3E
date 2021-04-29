@@ -9,76 +9,76 @@ public class Tribble {
 
     @Id
     @Column(name = "tribble_id")
-    private int id;
+    private int tribble_id;
 
     @Column(name = "tribble_name")
-    private String tribbleName;
+    private String tribble_name;
 
     @Column(name = "tribble_weight")
-    private int tribbleWeight;
+    private int tribble_weight;
 
     @Column(name = "tribble_height")
-    private int tribbleHeight;
+    private int tribble_height;
 
     @Column(name = "tribble_color")
-    private String tribbleColor;
+    private String tribble_color;
 
-    public Tribble(int id, String tribbleName, int tribbleWeight, int tribbleHeight, String tribbleColor) {
-        this.id = id;
-        this.tribbleName = tribbleName;
-        this.tribbleWeight = tribbleWeight;
-        this.tribbleHeight = tribbleHeight;
-        this.tribbleColor = tribbleColor;
+    public Tribble(int tribble_id, String tribble_name, int tribble_weight, int tribble_height, String tribble_color) {
+        this.tribble_id = tribble_id;
+        this.tribble_name = tribble_name;
+        this.tribble_weight = tribble_weight;
+        this.tribble_height = tribble_height;
+        this.tribble_color = tribble_color;
     }
 
-    public int getId() {
-        return id;
+    public int getTribble_id() {
+        return tribble_id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setTribble_id(int tribble_id) {
+        this.tribble_id = tribble_id;
     }
 
-    public String getTribbleName() {
-        return tribbleName;
+    public String getTribble_name() {
+        return tribble_name;
     }
 
-    public void setTribbleName(String tribbleName) {
-        this.tribbleName = tribbleName;
+    public void setTribble_name(String tribble_name) {
+        this.tribble_name = tribble_name;
     }
 
-    public int getTribbleWeight() {
-        return tribbleWeight;
+    public int getTribble_weight() {
+        return tribble_weight;
     }
 
-    public void setTribbleWeight(int tribbleWeight) {
-        this.tribbleWeight = tribbleWeight;
+    public void setTribble_weight(int tribble_weight) {
+        this.tribble_weight = tribble_weight;
     }
 
-    public int getTribbleHeight() {
-        return tribbleHeight;
+    public int getTribble_height() {
+        return tribble_height;
     }
 
-    public void setTribbleHeight(int tribbleHeight) {
-        this.tribbleHeight = tribbleHeight;
+    public void setTribble_height(int tribble_height) {
+        this.tribble_height = tribble_height;
     }
 
-    public String getTribbleColor() {
-        return tribbleColor;
+    public String getTribble_color() {
+        return tribble_color;
     }
 
-    public void setTribbleColor(String tribbleColor) {
-        this.tribbleColor = tribbleColor;
+    public void setTribble_color(String tribble_color) {
+        this.tribble_color = tribble_color;
     }
 
     @Override
     public String toString() {
         return "Tribble{" +
-                "id=" + id +
-                ", tribbleName='" + tribbleName + '\'' +
-                ", tribbleWeight=" + tribbleWeight +
-                ", tribbleHeight=" + tribbleHeight +
-                ", tribbleColor='" + tribbleColor + '\'' +
+                "tribble_id=" + tribble_id +
+                ", tribble_name='" + tribble_name + '\'' +
+                ", tribble_weight=" + tribble_weight +
+                ", tribble_height=" + tribble_height +
+                ", tribble_color='" + tribble_color + '\'' +
                 '}';
     }
 }

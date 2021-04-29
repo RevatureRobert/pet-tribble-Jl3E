@@ -1,7 +1,5 @@
 package com.revature.pettribble.model;
 
-import com.revature.pettribble.annotation.DataTable;
-
 import javax.persistence.*;
 
 @Table(name = "lab")

@@ -10,11 +10,14 @@ public class Driver {
         Lab lab = new Lab(1,"name", 1);
         Tribble tribble = new Tribble(1,"Spot", 50, 15, "red");
 
-        crud.insertSQLQuery(lab);
-        crud.insertSQLQuery(tribble);
+//        crud.insertSQLQuery(tribble);
+//        crud.insertSQLQuery(lab);
 
-        crud.selectAllSql(lab);
-        crud.deleteById(lab, 1);
-        crud.deleteById(tribble, 1);
+        tribble.setTribble_color("blue");
+        crud.updateTable(tribble);
+//
+//        crud.selectAllSql(lab);
+//        crud.deleteById(lab, 1);
+//        crud.deleteById(tribble, 1);
     }
 }
